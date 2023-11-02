@@ -1368,11 +1368,11 @@ class Monitor extends BeanModel {
                 let tagsmessage = ' ';
                 for (let tago of showtags['tags']) {
                     if (typeof tago['value'] !== 'undefined' && tago['value'] !== '') {
-                        tagsmessage = tago['name']':'tago['value']' ';
+                        tagsmessage += tago['name']+':'+tago['value']+' ';
                     }
                     else
                     {
-                        tagsmessage = tago['name'] ' ';
+                        tagsmessage += tago['name']+ ' ';
                     }
                 }
                 msg = `[${monitor.name}] [${text}] [${tagsmessage}] ${bean.msg}`;
