@@ -1361,7 +1361,26 @@ class Monitor extends BeanModel {
                 text = "🔴 Down";
             }
 
-            let msg = `[${monitor.name}] [${text}] ${bean.msg}`;
+            const showtags = await monitor.toJSON();
+            let msg;
+            if (showtags['tags'].length > 0)
+            {
+                let tagsmessage = ' ';
+                for (let tago of showtags['tags']) {
+                    if (typeof tago['value'] !== 'undefined' && tago['value'] !== '') {
+                        tagsmessage = tago['name']':'tago['value']' ';
+                    }
+                    else
+                    {
+                        tagsmessage = tago['name'] ' ';
+                    }
+                }
+                msg = `[${monitor.name}] [${text}] [${tagsmessage}] ${bean.msg}`;
+            }
+            else
+            {
+                msg = `[${monitor.name}] [${text}] ${bean.msg}`;
+            }
 
             for (let notification of notificationList) {
                 try {
